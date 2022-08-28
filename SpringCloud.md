@@ -115,3 +115,25 @@ Ribbon：客户端负载均衡组件
 The distributed nature of microservices brings challenges. Spring helps you mitigate these. With several ready-to-run cloud patterns, [Spring Cloud](https://spring.io/cloud) can help with service discovery, load-balancing, circuit-breaking, distributed tracing, and monitoring. It can even act as an API gateway.
 
 ![](SpringCloud.assets/diagram-microservices-88e01c7d34c688cb49556435c130d352.svg)
+
+SpringCloud是微服务的落地
+
+SpringCloud体现了微服务的弹性设计
+
+微服务的工作方式一般是基于分布式的
+
+SpringCloud仍然是Spring家族一员，可以解决微服务的分布式工作方式带来的各种问题
+
+SpringCloud提供很多组件，比如 服务发现，负载均衡，链路中断，分布式追踪和监控，甚至提供API Gateway功能
+
+### SpringCloud和SpringBoot有版本对应关系
+
+Adding Spring Cloud To An Existing Spring Boot Application
+
+If you an existing Spring Boot app you want to add Spring Cloud to that app, the first step is to determine the version of Spring Cloud you should use. The version you use in your app will depend on the version of Spring Boot you are using.
+
+The table below outlines which version of Spring Cloud maps to which version of Spring Boot.
+
+![image-20220828223937378](SpringCloud.assets/image-20220828223937378.png)
+
+Spring Cloud Dalston, Edgware, Finchley, and Greenwich have all reached end of life status and are no longer supported.
