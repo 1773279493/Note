@@ -137,3 +137,41 @@ The table below outlines which version of Spring Cloud maps to which version of 
 ![image-20220828223937378](SpringCloud.assets/image-20220828223937378.png)
 
 Spring Cloud Dalston, Edgware, Finchley, and Greenwich have all reached end of life status and are no longer supported.
+
+## SpringCloud组件选型
+
+服务注册中心：Erueka:confused: ,Nacos:kissing_closed_eyes:,Zookeeper:kissing_closed_eyes:,Consul:kissing_closed_eyes:
+
+服务负载均衡：Ribbon:kissing_closed_eyes:，LoadBalancer:kissing_closed_eyes:
+
+服务熔断降级：Hystrix:confused:，Sentinel:kissing_closed_eyes:
+
+服务调用：Feign:confused:，Open Feign:kissing_closed_eyes:
+
+服务网关：Zuul:confused:，GateWay:kissing_closed_eyes:
+
+服务配置：Config:confused:，Nacos:kissing_closed_eyes:
+
+服务总线：Bus:confused:，Nacos:kissing_closed_eyes:
+
+### 总结
+
+#### SpringCloud原生组件的几大痛点
+
+1.SpringCloud部分组件停止维护和更新，给开发带来不便
+
+2.SpringCloud部分环境搭建复杂，没有完善的可视化界面，我们需要大量的二次开发和定制
+
+3.SpringCloud配置复杂，难以上手
+
+#### SpringCloudAlibaba的优势
+
+1.阿里使用过的组件经历了考验【高并发，高性能，高可用】，性能强悍，设计合理，现在开源出来供大家使用。
+
+2.搭配完善的可视化界面给开发运维带来极大的便利搭建简单。
+
+#### 分布式微服务技术选型建议
+
+1.SpringCloudAlibaba组件为主
+
+2.SpringCloud为辅，比如（SpringCloud-Ribbon：负载均衡，SpringCloud-OpenFeign：调用远程服务，SpringCloud-Gateway：API网关，SpringCloud-Sleuth：调用链监控等）还是不错的。
