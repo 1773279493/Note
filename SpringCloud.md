@@ -55,3 +55,63 @@
 微服务是系统架构上的一种设计风格，它的主旨是将一个原本独立的系统拆分成多个小型服务，这些小型服务都在各自独立的进程中运行，服务之间通过基于HTTP的RESTful API进行通信合作
 
 被拆分的每个小型服务都围绕着系统中的某一项或一些耦合度较高的业务进行构建，并且每个服务都维护者自身的数据存储，业务开发，自动化测试案例以及独立部署机制。由于有轻量级的通信协作基础，所以这些微服务可以使用不同的语言来编写。
+
+## Spring Cloud全面说明（重要）
+
+1.SpringCloud来源于Spring，是更高层次的，架构视角的综合性大型项目，目标旨在构建一套标准化的微服务解决方案，让架构师在使用微服务理念构建系统时，面向各环节的问题都可以找到相应的组件来处理。
+
+2.SpringCloud是Spring社区为微服务架构提供的一个"全家桶"套餐。套餐中各个组件之间的配合，可以减少在组件的选型和整合上花费的精力，可以快速构建起基础的微服务架构系统，是微服务架构的最佳落地方案
+
+3SpringCloud 天然支持SpringBoot（有版本对应要求），使用门槛较低
+
+4.解决与分布式系统相关的复杂性-网络问题，延迟开销，带宽问题，安全问题
+
+5处理服务发现的能力-服务发现允许集群中的进程和服务找到彼此并进行通信
+
+6解决冗余问题-冗余问题经常发生在分布式系统中
+
+7解决负载平衡-改进跨多个计算资源（例如计算机集群，网络链接，中央处理单元）的工作负载分布
+
+## SpringCloud核心组件
+
+消息驱动组件：Stream
+
+声明式服务调用组件：OpenFeign
+
+API网关：Gateway
+
+Sleuth：分布式服务跟踪组件
+
+Bus：消息总线组件
+
+Config：分布式配置中心组件
+
+### SpringCloud Alibaba
+
+Sentinel：服务降级熔断
+
+Nacos：服务注册&发现组件
+
+Seata：分布式事务治理组件
+
+Alibaba Cloud OSS：对象存储组件
+
+其他...
+
+### SpringCloud Netflix
+
+Hystrix:服务熔断保护组件
+
+zuul：网关治理组件
+
+Eurka：治理组件
+
+Ribbon：客户端负载均衡组件
+
+其他...
+
+## SpringCloud分布式示意图
+
+The distributed nature of microservices brings challenges. Spring helps you mitigate these. With several ready-to-run cloud patterns, [Spring Cloud](https://spring.io/cloud) can help with service discovery, load-balancing, circuit-breaking, distributed tracing, and monitoring. It can even act as an API gateway.
+
+![](SpringCloud.assets/diagram-microservices-88e01c7d34c688cb49556435c130d352.svg)
