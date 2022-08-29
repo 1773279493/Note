@@ -175,3 +175,114 @@ Spring Cloud Dalston, Edgware, Finchley, and Greenwich have all reached end of l
 1.SpringCloudAlibaba组件为主
 
 2.SpringCloud为辅，比如（SpringCloud-Ribbon：负载均衡，SpringCloud-OpenFeign：调用远程服务，SpringCloud-Gateway：API网关，SpringCloud-Sleuth：调用链监控等）还是不错的。
+
+## 配置父项目pom.xml
+
+```xml-dtd
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jyx.springcloud</groupId>
+  <artifactId>e-commerce-center</artifactId>
+<!--  表明是一个父工程,聚合管理其他模块-->
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>e-commerce-center</name>
+  <url>http://www.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <junit.version>4.12</junit.version>
+    <log4j.version>2.17.2</log4j.version>
+    <mysql.version>5.1.47</mysql.version>
+    <druid.version>1.1.17</druid.version>
+    <mybatis.spring.boot.version>2.2.0</mybatis.spring.boot.version>
+    <lombok.version>1.18.20</lombok.version>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+<!--      配置spring boot-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.2.2.RELEASE</version>
+<!--        1.type:pom 和scope:import 配合使用
+            2.表示父项目的子模块，在引入springboot相关依赖时，锁定版本为2.2.2.RELEASE
+            3.通过pom + import 解决maven单继承机制-->
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+<!--      配置spring cloud-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Hoxton.SR1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--      配置cloud alibaba-->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+<!--      配置mysql-->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
+      <!--      配置druid数据源-->
+      <dependency>
+        <groupId>com.alibab</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+<!--      配置springboot整合mybatis starter-->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybatis.spring.boot.version}</version>
+      </dependency>
+      <!--      配置log4j，使用的最新高版本-->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <build>
+    <finalName>e-commerce-center</finalName>
+  </build>
+</project>
+```
+
+### DependecyManagement细节说明
+
+1、Maven使用dependecyManagement元素来提供了一种管理依赖版本号的方式。通常在项目packaging为POM，中使用dependencyManagement元素
+
+2、使用pom.xml中的dependecyManagement元素能让所在在子项目中引用一个依赖，Maven会沿着父子层次向上走，直到找到一个拥有dependecyManagement元素的项目，然后它就会使用这个dependecyManagement元素中指定的版本号
+
+3、好处：如果多个子项目都引用同一样依赖，则可以避免在每个使用的子项目都声明一个版本号，当升级或切换到另一个版本时，只需要在顶层父容器里更新，而不需要分别在子项目中修改；另外如果某个子项目需要另外的一个版本，只需要声明version就可。
+
+4、dependecyManagement里只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖
+
+5、如果不在子项目中声明依赖，是不会从父项目中继承下来的，只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且version和scope都读取自父pom
+
+![image-20220829100714927](SpringCloud.assets/image-20220829100714927.png)
+
+6、如果子项目中指定了版本号，那么会使用子项目中指定的jar版本
