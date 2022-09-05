@@ -286,3 +286,6 @@ Spring Cloud Dalston, Edgware, Finchley, and Greenwich have all reached end of l
 ![image-20220829100714927](SpringCloud.assets/image-20220829100714927.png)
 
 6、如果子项目中指定了版本号，那么会使用子项目中指定的jar版本
+
+
+
